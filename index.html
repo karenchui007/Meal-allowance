@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meal Allowance</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#0F172A;color:#fff;padding:20px 16px}
+.box{max-width:440px;margin:0 auto}
+h1{text-align:center;font-size:24px;margin-bottom:8px}
+.sub{text-align:center;font-size:13px;color:#94A3B8;margin-bottom:20px}
+select{width:100%;padding:14px;font-size:16px;border-radius:12px;border:none;background:#334155;color:#fff;margin-bottom:20px}
+#ans{background:#1E293B;border-radius:20px;padding:22px;margin-bottom:30px;border:1px solid #334155}
+.tier{text-align:center;font-size:20px;font-weight:bold;background:linear-gradient(90deg,#3B82F6,#2563EB);padding:8px 20px;border-radius:30px;display:table;margin:0 auto 12px}
+.rate{text-align:center;font-size:15px;background:#1F2937;border-radius:12px;padding:8px 12px;margin-bottom:8px}
+.rate strong{color:#FBBF24}
+.vat{text-align:center;font-size:14px;background:#1F2937;border-radius:12px;padding:7px 12px;margin-bottom:18px;color:#94A3B8}
+.vat strong{color:#34D399}
+.row{padding:14px 0;border-bottom:1px solid #334155}
+.row:last-child{border-bottom:none}
+.tt{font-size:17px;font-weight:600}
+.usd{font-size:14px;color:#94A3B8;margin:3px 0}
+.hk{font-size:23px;font-weight:bold;color:#60A5FA}
+.group{color:#94A3B8;font-size:12px;padding:6px 0 2px 4px}
+.setting-box{background:#1E293B;border-radius:16px;padding:16px;margin-top:40px;border-top:2px dashed #475569}
+.setting-title{font-size:15px;font-weight:600;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;color:#94A3B8}
+.toggle-btn{background:#475569;color:#cbd5e1;border:none;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer}
+.input-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.input-row label{font-size:14px;width:80px;color:#CBD5E1}
+.input-row input{flex:1;padding:10px 12px;font-size:16px;border-radius:8px;border:1px solid #475569;background:#334155;color:#fff;text-align:right}
+.save-btn{width:100%;padding:12px;font-size:16px;font-weight:bold;background:linear-gradient(90deg,#10B981,#059669);color:#fff;border:none;border-radius:10px;cursor:pointer;margin-top:6px}
+.save-btn:active{opacity:0.85}
+.saved-msg{text-align:center;color:#34D399;font-size:13px;margin-top:8px;display:none}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>💰 Meal Allowance</h1>
+  <p class="sub">Select country → View allowance · Settings at bottom</p>
+
+  <select id="c" onchange="go()">
+    <option value="">👉 Select country / region</option>
+    <option disabled class="group">───── Tier 1 ─────</option>
+    <option t="1" c="EUR" r="0.8602" vat="Yes, 12%" note="Restaurant 12% / Alcohol 21%">🇧🇪 Belgium</option>
+    <option t="1" c="USD" r="1.0000" vat="No federal VAT" note="State sales tax 0–10%">🇺🇸 United States</option>
+    <option t="1" c="DKK" r="6.9000" vat="Yes, 25%" note="Standard rate 25%">🇩🇰 Denmark</option>
+    <option t="1" c="EUR" r="0.8602" vat="Yes, 10%" note="Food 10% / Alcohol 20%">🇫🇷 France</option>
+    <option t="1" c="ISK" r="138.00" vat="Yes, 24%" note="Standard rate 24%">🇮🇸 Iceland</option>
+    <option t="1" c="ILS" r="3.7000" vat="Yes, 18%" note="Standard rate 18%">🇮🇱 Israel</option>
+    <option t="1" c="EUR" r="0.8602" vat="Yes, 9%" note="Restaurant 9%">🇳🇱 Netherlands</option>
+    <option t="1" c="NOK" r="10.800" vat="Yes, 25%" note="Standard rate 25%">🇳🇴 Norway</option>
+    <option t="1" c="SGD" r="1.2670" vat="Yes, 9%" note="GST 9%">🇸🇬 Singapore</option>
+    <option t="1" c="CHF" r="0.8087" vat="Yes, 8.1%" note="Restaurant 8.1%">🇨🇭 Switzerland</option>
+    <option disabled class="group">───── Tier 2 ─────</option>
+    <option t="2" c="EUR" r="0.8602" vat="Yes, 10%" note="Restaurant 10%">🇦🇹 Austria</option>
+    <option t="2" c="CAD" r="1.3800" vat="Yes, 13%" note="GST/HST 13%">🇨🇦 Canada</option>
+    <option t="2" c="EUR" r="0.8602" vat="Yes, 7%" note="Food 7% / Alcohol 19%">🇩🇪 Germany</option>
+    <option t="2" c="CNY" r="6.7130" vat="Yes, 6%" note="Food service 6%">🇨🇳 Greater China</option>
+    <option t="2" c="EUR" r="0.8602" vat="Yes, 9%" note="Effective Jul 2026">🇮🇪 Ireland</option>
+    <option t="2" c="EUR" r="0.8602" vat="Yes, 10%" note="Restaurant 10%">🇮🇹 Italy</option>
+    <option t="2" c="GBP" r="0.7390" vat="Yes, 20%" note="Standard rate 20%">🇬🇧 United Kingdom</option>
+    <option t="2" c="AED" r="3.6726" vat="Yes, 5%" note="VAT 5%">🇦🇪 UAE</option>
+    <option t="2" c="ZAR" r="15.983" vat="Yes, 15%" note="Standard rate 15%">🇿🇦 South Africa</option>
+    <option t="2" c="KRW" r="1310.0" vat="Yes, 10%" note="VAT 10%">🇰🇷 South Korea</option>
+    <option t="2" c="SEK" r="10.700" vat="Yes, 12%" note="Restaurant 12%">🇸🇪 Sweden</option>
+    <option t="2" c="SAR" r="3.7549" vat="Yes, 15%" note="VAT 15%">🇸🇦 Saudi Arabia</option>
+    <option disabled class="group">───── Tier 3 ─────</option>
+    <option t="3" c="AUD" r="1.3890" vat="Yes, 10%" note="GST 10%">🇦🇺 Australia</option>
+    <option t="3" c="JPY" r="156.34" vat="Yes, 10%" note="Dine-in 10%">🇯🇵 Japan</option>
+    <option t="3" c="EUR" r="0.8602" vat="Yes, 10%" note="Food 10% / Alcohol 21%">🇪🇸 Spain</option>
+    <option t="3" c="EUR" r="0.8602" vat="Yes, 6%" note="Food 6%">🇵🇹 Portugal</option>
+    <option t="3" c="EUR" r="0.8602" vat="Yes, 24%" note="Standard rate 24%">🇬🇷 Greece</option>
+    <option t="3" c="EUR" r="0.8602" vat="Yes, 19%" note="Standard rate 19%">🇭🇷 Croatia</option>
+    <option disabled class="group">───── Tier 4 ─────</option>
+    <option t="4" c="BRL" r="5.7000" vat="Yes, ~17%" note="ICMS approx 17%">🇧🇷 Brazil</option>
+    <option t="4" c="CLP" r="955.00" vat="Yes, 19%" note="Standard rate 19%">🇨🇱 Chile</option>
+    <option t="4" c="CZK" r="22.300" vat="Yes, 12%" note="Restaurant 12%">🇨🇿 Czech Republic</option>
+    <option t="4" c="INR" r="94.485" vat="Yes, 18%" note="GST 18%">🇮🇳 India</option>
+    <option t="4" c="IDR" r="15400.0" vat="Yes, 11%" note="VAT 11%">🇮🇩 Indonesia</option>
+    <option t="4" c="MYR" r="4.3000" vat="Yes, 6%" note="SST 6%">🇲🇾 Malaysia</option>
+    <option t="4" c="PHP" r="57.500" vat="Yes, 12%" note="VAT 12%">🇵🇭 Philippines</option>
+    <option t="4" c="PLN" r="3.9500" vat="Yes, 8%" note="Restaurant 8%">🇵🇱 Poland</option>
+    <option t="4" c="THB" r="34.200" vat="Yes, 7%" note="VAT 7%">🇹🇭 Thailand</option>
+    <option t="4" c="VND" r="24300.0" vat="Yes, 5%" note="VAT 5%">🇻🇳 Vietnam</option>
+  </select>
+
+  <div id="ans">
+    <div class="tier">Tier <span id="tn"></span></div>
+    <div class="rate">💱 Exchange rate: <strong>1 USD = <span id="rt"></span></strong></div>
+    <div class="vat">💳 Restaurant VAT: <strong id="vt"></strong><br><small id="vtn"></small></div>
+    <div class="row">
+      <div class="tt">🥐 Breakfast</div>
+      <div class="usd" id="bu"></div>
+      <div class="hk" id="bl"></div>
+    </div>
+    <div class="row">
+      <div class="tt">🍽️ Lunch</div>
+      <div class="usd" id="lu"></div>
+      <div class="hk" id="ll"></div>
+    </div>
+    <div class="row">
+      <div class="tt">🍷 Dinner</div>
+      <div class="usd" id="du"></div>
+      <div class="hk" id="dl"></div>
+    </div>
+  </div>
+
+  <div class="setting-box">
+    <div class="setting-title">
+      ⚙️ Allowance Settings (Admin Only)
+      <button class="toggle-btn" id="toggleBtn">Show ▼</button>
+    </div>
+    <div id="settingsPanel" style="display:none">
+      <div class="input-row">
+        <label>Breakfast</label>
+        <input type="number" id="inB" step="0.01">
+      </div>
+      <div class="input-row">
+        <label>Lunch</label>
+        <input type="number" id="inL" step="0.01">
+      </div>
+      <div class="input-row">
+        <label>Dinner</label>
+        <input type="number" id="inD" step="0.01">
+      </div>
+      <button class="save-btn" id="saveBtn">💾 Save & Update All</button>
+      <div class="saved-msg" id="savedMsg">✅ Saved! All amounts updated</div>
+    </div>
+  </div>
+</div>
+
+<script>
+let val = { b:30, l:45, d:75, b2:25, l2:40, d2:70, b4:20, l4:30, d4:60 };
+const S={USD:'$',GBP:'£',EUR:'€',CNY:'¥',JPY:'¥',SGD:'S$',CHF:'CHF',DKK:'kr',NOK:'kr',SEK:'kr',CAD:'C$',AUD:'A$',AED:'AED',SAR:'SAR',KRW:'₩',ZAR:'R',BRL:'R$',CLP:'$',CZK:'Kč',INR:'₹',IDR:'Rp',MYR:'RM',PHP:'₱',PLN:'zł',THB:'฿',VND:'₫'};
+
+function loadSettings(){
+  const saved=localStorage.getItem('mealAllowanceVals');
+  if(saved){ val=JSON.parse(saved); }
+  document.getElementById('inB').value=val.b;
+  document.getElementById('inL').value=val.l;
+  document.getElementById('inD').value=val.d;
+}
+
+document.getElementById('saveBtn').onclick=function(){
+  const newB=parseFloat(document.getElementById('inB').value)||30;
+  const newL=parseFloat(document.getElementById('inL').value)||45;
+  const newD=parseFloat(document.getElementById('inD').value)||75;
+  val.b=newB; val.l=newL; val.d=newD;
+  val.b2=+(newB*(25/30)).toFixed(4);
+  val.l2=+(newL*(40/45)).toFixed(4);
+  val.d2=+(newD*(70/75)).toFixed(4);
+  val.b4=+(newB*(20/30)).toFixed(4);
+  val.l4=+(newL*(30/45)).toFixed(4);
+  val.d4=+(newD*(60/75)).toFixed(4);
+  localStorage.setItem('mealAllowanceVals',JSON.stringify(val));
+  const msg=document.getElementById('savedMsg'); msg.style.display='block'; setTimeout(()=>{msg.style.display='none'},2500);
+  if(document.getElementById('c').value){ go(); }
+};
+
+document.getElementById('toggleBtn').onclick=function(){
+  const p=document.getElementById('settingsPanel');
+  p.style.display=p.style.display==='block'?'none':'block';
+  this.textContent=p.style.display==='block'?'Hide ▲':'Show ▼';
+};
+
+function go(){
+  const s=document.getElementById('c'); const o=s.selectedOptions[0];
+  if(!o.value){document.getElementById('ans').style.display='none';return}
+  const t=+o.getAttribute('t'); const c=o.getAttribute('c'); const r=+o.getAttribute('r');
+  const vat=o.getAttribute('vat'); const note=o.getAttribute('note');
+  let vb,vl,vd;
+  if(t===1||t===3){ vb=val.b; vl=val.l; vd=val.d; }
+  else if(t===2){ vb=val.b2; vl=val.l2; vd=val.d2; }
+  else{ vb=val.b4; vl=val.l4; vd=val.d4; }
+  document.getElementById('tn').textContent=t;
+  document.getElementById('rt').textContent=(S[c]||c+' ')+r.toFixed(4);
+  document.getElementById('vt').textContent=vat; document.getElementById('vtn').textContent=note;
+  document.getElementById('bu').textContent='$'+vb.toFixed(2)+' USD';
+  document.getElementById('lu').textContent='$'+vl.toFixed(2)+' USD';
+  document.getElementById('du').textContent='$'+vd.toFixed(2)+' USD';
+  document.getElementById('bl').textContent=(S[c]||c+' ')+(vb*r).toFixed(2);
+  document.getElementById('ll').textContent=(S[c]||c+' ')+(vl*r).toFixed(2);
+  document.getElementById('dl').textContent=(S[c]||c+' ')+(vd*r).toFixed(2);
+  document.getElementById('ans').style.display='block';
+}
+loadSettings();
+</script>
+</body>
+</html>
