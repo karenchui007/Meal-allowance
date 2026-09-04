@@ -193,8 +193,8 @@ select{width:100%;padding:10px 12px;font-size:15px;border:none;background:#33415
         <input type="number" id="inD" step="0.01">
       </div>
 
-      <button class="save-btn" id="saveBtn">💾 Save & Update All Calculations</button>
-      <div class="saved-msg" id="savedMsg" style="display:none">✅ Saved! All amounts & calculations updated</div>
+      <button class="save-btn" id="saveBtn">💾 Save & Show All Tiers</button>
+      <div class="saved-msg" id="savedMsg" style="display:none">✅ Saved! All rates updated below</div>
 
       <div class="summary-box" id="summaryBox">
         <div class="summary-title">📋 Updated Allowance Summary (USD)</div>
@@ -208,23 +208,20 @@ select{width:100%;padding:10px 12px;font-size:15px;border:none;background:#33415
 </div>
 
 <script>
-// ✅ 匯率資料更新時間
+// ✅ 匯率資料更新時間 — 需要改就改呢行就得
 const DATA_REFRESH_DATE = '4 September 2026';
 
-// ✅ 出廠預設值（按 Reset 會用返呢套）
+// ✅ 標準預設值 — 跟你嘅表
 const DEFAULT_VAL = { 
-  b1:30.00, l1:45.00, d1:75.00,
-  b2:25.00, l2:40.00, d2:70.00,
-  b3:25.00, l3:35.00, d3:65.00,
-  b4:20.00, l4:30.00, d4:60.00
+  b1:30.00, l1:45.00, d1:75.00,  // Tier 1
+  b2:25.00, l2:40.00, d2:70.00,  // Tier 2
+  b3:25.00, l3:35.00, d3:65.00,  // Tier 3
+  b4:20.00, l4:30.00, d4:60.00   // Tier 4
 };
 
 let val = { ...DEFAULT_VAL };
 
 const S={USD:'$',GBP:'£',EUR:'€',CNY:'¥',HKD:'HK$',TWD:'NT$',JPY:'¥',SGD:'S$',CHF:'CHF',DKK:'kr',NOK:'kr',SEK:'kr',CAD:'C$',AUD:'A$',NZD:'NZ$',AED:'AED',SAR:'SAR',QAR:'QR',KWD:'KD',BHD:'BD',OMR:'OMR',JOD:'JD',EGP:'E£',ZAR:'R',KRW:'₩',MYR:'RM',THB:'฿',VND:'₫',IDR:'Rp',PHP:'₱',INR:'₹',RUB:'₽',UAH:'₴',KZT:'₸',BGN:'лв',TRY:'₺',HRK:'kn',CZK:'Kč',HUF:'Ft',PLN:'zł',RON:'lei',BRL:'R$',MXN:'Mex$',COP:'$',PEN:'S/',CLP:'$',ARS:'ARS$',NGN:'₦',KES:'KSh',GHS:'GH₵',UGX:'USh',TZS:'TSh',ZMW:'ZK',ETB:'Br',MAR:'DH',TND:'DT',PKR:'Rs',BDT:'৳',LKR:'Rs',NPR:'NPR',MMK:'Ks',KHR:'៛',LAK:'₭',BND:'B$',PGK:'K',FJD:'FJ$',GTQ:'Q',PAB:'B/.',CRC:'₡'};
-
-// ✅ 記住用家而家選咗邊個國家（按 Save 之後自動用返）
-let lastSelectedCountryValue = '';
 
 // ✅ 預設空白版面
 function showPlaceholder(){
@@ -271,7 +268,7 @@ function loadSettings(){
     }
   }
   loadTierValues();
-  updateSummary();
+  updateSummary(); // ✅ 一載入就更新 Summary
   showPlaceholder();
 }
 
@@ -289,27 +286,18 @@ document.getElementById('saveBtn').onclick=function(){
   const l=parseFloat(document.getElementById('inL').value)||0;
   const d=parseFloat(document.getElementById('inD').value)||0;
 
-  // ✅ 即時覆蓋寫入新數值
   if(tier==='t1'){ val.b1=b; val.l1=l; val.d1=d; }
   else if(tier==='t2'){ val.b2=b; val.l2=l; val.d2=d; }
   else if(tier==='t3'){ val.b3=b; val.l3=l; val.d3=d; }
   else if(tier==='t4'){ val.b4=b; val.l4=l; val.d4=d; }
 
-  // ✅ 永久儲存（覆蓋舊資料）
   localStorage.setItem('mealAllowanceVals',JSON.stringify(val));
 
-  // ✅ 更新 Summary
-  updateSummary();
-
-  // ✅ 自動重新計算主畫面（已選國家即時跟住變）
-  if(lastSelectedCountryValue){
-    document.getElementById('c').value = lastSelectedCountryValue;
-    go();
-  }
-
-  // ✅ 顯示儲存成功提示
   document.getElementById('savedMsg').style.display='block';
   setTimeout(()=>{document.getElementById('savedMsg').style.display='none'},3500);
+
+  updateSummary(); // ✅ 儲存即時更新
+  if(document.getElementById('c').value){ go(); }
 };
 
 document.getElementById('toggleBtn').onclick=function(){
@@ -317,7 +305,7 @@ document.getElementById('toggleBtn').onclick=function(){
   const show=p.style.display!=='block';
   p.style.display=show?'block':'none';
   this.textContent=show?'Hide ▲':'Show ▼';
-  if(show){ updateSummary(); }
+  if(show){ updateSummary(); } // ✅ 一打開 Settings 即時顯示 Summary
 };
 
 const searchInput=document.getElementById('searchInput');
@@ -331,14 +319,11 @@ searchInput.addEventListener('input',function(){
   });
 });
 
-// ✅ 選國家 → 記住佢 + 顯示資料
+// ✅ 選國家 → 顯示資料；揀回空白 → 顯示預設版面
 function go(){
   const s=document.getElementById('c');
   const o=s.selectedOptions[0];
   const ans=document.getElementById('ans');
-
-  // ✅ 記住而家選咗邊個（Save 之後自動用返）
-  lastSelectedCountryValue = o.value;
 
   if(!o.value){
     showPlaceholder();
