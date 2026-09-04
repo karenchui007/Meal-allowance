@@ -5,32 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meal Allowance</title>
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#0F172A;color:#fff;padding:20px 16px}
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#0F172A;color:#fff;padding:16px 14px;margin:0}
 .box{max-width:440px;margin:0 auto}
-h1{text-align:center;font-size:24px;margin-bottom:8px}
-.sub{text-align:center;font-size:13px;color:#94A3B8;margin-bottom:20px}
-select{width:100%;padding:14px;font-size:16px;border-radius:12px;border:none;background:#334155;color:#fff;margin-bottom:20px}
-#ans{background:#1E293B;border-radius:20px;padding:22px;margin-bottom:30px;border:1px solid #334155}
-.tier{text-align:center;font-size:20px;font-weight:bold;background:linear-gradient(90deg,#3B82F6,#2563EB);padding:8px 20px;border-radius:30px;display:table;margin:0 auto 12px}
-.rate{text-align:center;font-size:15px;background:#1F2937;border-radius:12px;padding:8px 12px;margin-bottom:8px}
+h1{text-align:center;font-size:22px;margin:4px 0 4px}
+.sub{text-align:center;font-size:12px;color:#94A3B8;margin-bottom:10px}
+.select-wrapper{border-radius:12px;background:#334155;overflow:hidden;margin-bottom:16px}
+.search-box{width:100%;padding:10px 12px;font-size:15px;border:none;border-bottom:1px solid #475569;background:#1E293B;color:#fff;box-sizing:border-box;outline:none}
+.search-box::placeholder{color:#64748B}
+select{width:100%;padding:10px 12px;font-size:15px;border:none;background:#334155;color:#fff;box-sizing:border-box;min-height:62px;outline:none}
+
+#ans{background:#1E293B;border-radius:16px;padding:16px;margin-bottom:24px;border:1px solid #334155;display:block;min-height:260px}
+
+.tier{text-align:center;font-size:18px;font-weight:bold;background:linear-gradient(90deg,#3B82F6,#2563EB);padding:6px 16px;border-radius:20px;display:table;margin:0 auto 10px}
+.tier-placeholder{text-align:center;font-size:18px;font-weight:bold;background:linear-gradient(90deg,#3B82F6,#2563EB);padding:6px 16px;border-radius:20px;display:table;margin:0 auto 10px;opacity:0.7}
+.rate{text-align:center;font-size:14px;background:#1F2937;border-radius:10px;padding:6px 10px;margin-bottom:4px}
 .rate strong{color:#FBBF24}
-.vat{text-align:center;font-size:14px;background:#1F2937;border-radius:12px;padding:7px 12px;margin-bottom:18px;color:#94A3B8}
+.refresh{text-align:center;font-size:12px;background:#1F2937;border-radius:10px;padding:4px 10px;margin-bottom:6px;color:#94A3B8}
+.vat{text-align:center;font-size:13px;background:#1F2937;border-radius:10px;padding:6px 10px;margin-bottom:14px;color:#94A3B8}
 .vat strong{color:#34D399}
-.row{padding:14px 0;border-bottom:1px solid #334155}
+.row{padding:10px 0;border-bottom:1px solid #334155}
 .row:last-child{border-bottom:none}
-.tt{font-size:17px;font-weight:600}
-.usd{font-size:14px;color:#94A3B8;margin:3px 0}
-.hk{font-size:23px;font-weight:bold;color:#60A5FA}
-.group{color:#94A3B8;font-size:12px;padding:6px 0 2px 4px}
-.setting-box{background:#1E293B;border-radius:16px;padding:16px;margin-top:40px;border-top:2px dashed #475569}
-.setting-title{font-size:15px;font-weight:600;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;color:#94A3B8}
-.toggle-btn{background:#475569;color:#cbd5e1;border:none;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer}
-.input-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
-.input-row label{font-size:14px;width:80px;color:#CBD5E1}
-.input-row input{flex:1;padding:10px 12px;font-size:16px;border-radius:8px;border:1px solid #475569;background:#334155;color:#fff;text-align:right}
-.save-btn{width:100%;padding:12px;font-size:16px;font-weight:bold;background:linear-gradient(90deg,#10B981,#059669);color:#fff;border:none;border-radius:10px;cursor:pointer;margin-top:6px}
+.tt{font-size:16px;font-weight:600}
+.usd{font-size:13px;color:#94A3B8;margin:2px 0}
+.hk{font-size:20px;font-weight:bold;color:#60A5FA}
+.group{color:#94A3B8;font-size:11px;padding:4px 0 2px 4px}
+.setting-box{background:#1E293B;border-radius:14px;padding:14px;margin-top:30px;border-top:2px dashed #475569}
+.setting-title{font-size:14px;font-weight:600;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;color:#94A3B8}
+.toggle-btn{background:#475569;color:#cbd5e1;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer}
+.tier-select-row{margin-bottom:10px}
+.tier-select-row label{font-size:14px;color:#CBD5E1;margin-right:8px}
+.tier-select-row select{width:100%;padding:8px 10px;font-size:15px;border-radius:6px;border:1px solid #475569;background:#334155;color:#fff;outline:none;min-height:auto}
+.input-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.input-row label{font-size:14px;width:76px;color:#CBD5E1}
+.input-row input{flex:1;padding:8px 10px;font-size:15px;border-radius:6px;border:1px solid #475569;background:#334155;color:#fff;text-align:right}
+.save-btn{width:100%;padding:10px;font-size:15px;font-weight:bold;background:linear-gradient(90deg,#10B981,#059669);color:#fff;border:none;border-radius:8px;cursor:pointer;margin-top:6px}
 .save-btn:active{opacity:0.85}
-.saved-msg{text-align:center;color:#34D399;font-size:13px;margin-top:8px;display:none}
+.saved-msg{text-align:center;color:#34D399;font-size:12px;margin-top:8px}
+.summary-box{background:#1F2937;border-radius:8px;padding:10px;margin-top:10px;display:block}
+.summary-title{font-size:13px;font-weight:600;color:#94A3B8;margin-bottom:6px}
+.summary-row{font-size:13px;padding:3px 0;border-bottom:1px solid #334155}
+.summary-row:last-child{border-bottom:none}
+.placeholder-text{color:#64748B;opacity:0.6}
 </style>
 </head>
 <body>
@@ -38,71 +53,115 @@ select{width:100%;padding:14px;font-size:16px;border-radius:12px;border:none;bac
   <h1>💰 Meal Allowance</h1>
   <p class="sub">Select country → View allowance · Settings at bottom</p>
 
-  <select id="c" onchange="go()">
-    <option value="">👉 Select country / region</option>
-    <option disabled class="group">───── Tier 1 ─────</option>
-    <option t="1" c="EUR" r="0.8602" vat="Yes, 12%" note="Restaurant 12% / Alcohol 21%">🇧🇪 Belgium</option>
-    <option t="1" c="USD" r="1.0000" vat="No federal VAT" note="State sales tax 0–10%">🇺🇸 United States</option>
-    <option t="1" c="DKK" r="6.9000" vat="Yes, 25%" note="Standard rate 25%">🇩🇰 Denmark</option>
-    <option t="1" c="EUR" r="0.8602" vat="Yes, 10%" note="Food 10% / Alcohol 20%">🇫🇷 France</option>
-    <option t="1" c="ISK" r="138.00" vat="Yes, 24%" note="Standard rate 24%">🇮🇸 Iceland</option>
-    <option t="1" c="ILS" r="3.7000" vat="Yes, 18%" note="Standard rate 18%">🇮🇱 Israel</option>
-    <option t="1" c="EUR" r="0.8602" vat="Yes, 9%" note="Restaurant 9%">🇳🇱 Netherlands</option>
-    <option t="1" c="NOK" r="10.800" vat="Yes, 25%" note="Standard rate 25%">🇳🇴 Norway</option>
-    <option t="1" c="SGD" r="1.2670" vat="Yes, 9%" note="GST 9%">🇸🇬 Singapore</option>
-    <option t="1" c="CHF" r="0.8087" vat="Yes, 8.1%" note="Restaurant 8.1%">🇨🇭 Switzerland</option>
-    <option disabled class="group">───── Tier 2 ─────</option>
-    <option t="2" c="EUR" r="0.8602" vat="Yes, 10%" note="Restaurant 10%">🇦🇹 Austria</option>
-    <option t="2" c="CAD" r="1.3800" vat="Yes, 13%" note="GST/HST 13%">🇨🇦 Canada</option>
-    <option t="2" c="EUR" r="0.8602" vat="Yes, 7%" note="Food 7% / Alcohol 19%">🇩🇪 Germany</option>
-    <option t="2" c="CNY" r="6.7130" vat="Yes, 6%" note="Food service 6%">🇨🇳 Greater China</option>
-    <option t="2" c="EUR" r="0.8602" vat="Yes, 9%" note="Effective Jul 2026">🇮🇪 Ireland</option>
-    <option t="2" c="EUR" r="0.8602" vat="Yes, 10%" note="Restaurant 10%">🇮🇹 Italy</option>
-    <option t="2" c="GBP" r="0.7390" vat="Yes, 20%" note="Standard rate 20%">🇬🇧 United Kingdom</option>
-    <option t="2" c="AED" r="3.6726" vat="Yes, 5%" note="VAT 5%">🇦🇪 UAE</option>
-    <option t="2" c="ZAR" r="15.983" vat="Yes, 15%" note="Standard rate 15%">🇿🇦 South Africa</option>
-    <option t="2" c="KRW" r="1310.0" vat="Yes, 10%" note="VAT 10%">🇰🇷 South Korea</option>
-    <option t="2" c="SEK" r="10.700" vat="Yes, 12%" note="Restaurant 12%">🇸🇪 Sweden</option>
-    <option t="2" c="SAR" r="3.7549" vat="Yes, 15%" note="VAT 15%">🇸🇦 Saudi Arabia</option>
-    <option disabled class="group">───── Tier 3 ─────</option>
-    <option t="3" c="AUD" r="1.3890" vat="Yes, 10%" note="GST 10%">🇦🇺 Australia</option>
-    <option t="3" c="JPY" r="156.34" vat="Yes, 10%" note="Dine-in 10%">🇯🇵 Japan</option>
-    <option t="3" c="EUR" r="0.8602" vat="Yes, 10%" note="Food 10% / Alcohol 21%">🇪🇸 Spain</option>
-    <option t="3" c="EUR" r="0.8602" vat="Yes, 6%" note="Food 6%">🇵🇹 Portugal</option>
-    <option t="3" c="EUR" r="0.8602" vat="Yes, 24%" note="Standard rate 24%">🇬🇷 Greece</option>
-    <option t="3" c="EUR" r="0.8602" vat="Yes, 19%" note="Standard rate 19%">🇭🇷 Croatia</option>
-    <option disabled class="group">───── Tier 4 ─────</option>
-    <option t="4" c="BRL" r="5.7000" vat="Yes, ~17%" note="ICMS approx 17%">🇧🇷 Brazil</option>
-    <option t="4" c="CLP" r="955.00" vat="Yes, 19%" note="Standard rate 19%">🇨🇱 Chile</option>
-    <option t="4" c="CZK" r="22.300" vat="Yes, 12%" note="Restaurant 12%">🇨🇿 Czech Republic</option>
-    <option t="4" c="INR" r="94.485" vat="Yes, 18%" note="GST 18%">🇮🇳 India</option>
-    <option t="4" c="IDR" r="15400.0" vat="Yes, 11%" note="VAT 11%">🇮🇩 Indonesia</option>
-    <option t="4" c="MYR" r="4.3000" vat="Yes, 6%" note="SST 6%">🇲🇾 Malaysia</option>
-    <option t="4" c="PHP" r="57.500" vat="Yes, 12%" note="VAT 12%">🇵🇭 Philippines</option>
-    <option t="4" c="PLN" r="3.9500" vat="Yes, 8%" note="Restaurant 8%">🇵🇱 Poland</option>
-    <option t="4" c="THB" r="34.200" vat="Yes, 7%" note="VAT 7%">🇹🇭 Thailand</option>
-    <option t="4" c="VND" r="24300.0" vat="Yes, 5%" note="VAT 5%">🇻🇳 Vietnam</option>
-  </select>
+  <div class="select-wrapper">
+    <input type="text" id="searchInput" class="search-box" placeholder="🔍 Select country / region">
+    <select id="c" onchange="go()" size="2">
+      <option value="">👉 Select country / region</option>
+      <option disabled class="group">───── Tier 1 ─────</option>
+      <option data-tier="1" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 12%" data-note="Restaurant 12% / Alcohol 21%">🇧🇪 Belgium</option>
+      <option data-tier="1" data-currency="USD" data-rate="1.0000" data-vat="No federal VAT" data-note="State sales tax 0–10%">🇺🇸 United States</option>
+      <option data-tier="1" data-currency="DKK" data-rate="6.9000" data-vat="Yes, 25%" data-note="Standard rate 25%">🇩🇰 Denmark</option>
+      <option data-tier="1" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 10%" data-note="Food 10% / Alcohol 20%">🇫🇷 France</option>
+      <option data-tier="1" data-currency="ISK" data-rate="138.00" data-vat="Yes, 24%" data-note="Standard rate 24%">🇮🇸 Iceland</option>
+      <option data-tier="1" data-currency="ILS" data-rate="3.7000" data-vat="Yes, 18%" data-note="Standard rate 18%">🇮🇱 Israel</option>
+      <option data-tier="1" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 9%" data-note="Restaurant 9%">🇳🇱 Netherlands</option>
+      <option data-tier="1" data-currency="NOK" data-rate="10.800" data-vat="Yes, 25%" data-note="Standard rate 25%">🇳🇴 Norway</option>
+      <option data-tier="1" data-currency="SGD" data-rate="1.2670" data-vat="Yes, 9%" data-note="GST 9%">🇸🇬 Singapore</option>
+      <option data-tier="1" data-currency="CHF" data-rate="0.8087" data-vat="Yes, 8.1%" data-note="Restaurant 8.1%">🇨🇭 Switzerland</option>
+      <option data-tier="1" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 20%" data-note="Standard rate 20%">🇫🇮 Finland</option>
+      <option data-tier="1" data-currency="CAD" data-rate="1.3800" data-vat="Yes, 5%" data-note="GST 5%">🇨🇦 Canada</option>
+      <option data-tier="1" data-currency="AUD" data-rate="1.3890" data-vat="Yes, 10%" data-note="GST 10%">🇦🇺 Australia</option>
+      <option data-tier="1" data-currency="JPY" data-rate="156.34" data-vat="Yes, 10%" data-note="Consumption tax 10%">🇯🇵 Japan</option>
+      <option data-tier="1" data-currency="GBP" data-rate="0.7390" data-vat="Yes, 20%" data-note="Standard rate 20%">🇬🇧 United Kingdom</option>
+
+      <option disabled class="group">───── Tier 2 ─────</option>
+      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 10%" data-note="Restaurant 10%">🇦🇹 Austria</option>
+      <option data-tier="2" data-currency="HRK" data-rate="7.5200" data-vat="Yes, 13%" data-note="Restaurant 13%">🇭🇷 Croatia</option>
+      <option data-tier="2" data-currency="CZK" data-rate="22.300" data-vat="Yes, 12%" data-note="Restaurant 12%">🇨🇿 Czech Republic</option>
+      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 9%" data-note="Restaurant 9%">🇪🇪 Estonia</option>
+      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 7%" data-note="Food 7% / Alcohol 19%">🇩🇪 Germany</option>
+      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 27%" data-note="Standard rate 27%">🇭🇺 Hungary</option>
+      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 9%" data-note="Effective Jul 2026">🇮🇪 Ireland</option>
+      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 10%" data-note="Restaurant 10%">🇮🇹 Italy</option>
+      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 9%" data-note="Reduced rate 9%">🇱🇻 Latvia</option>
+      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 9%" data-note="Reduced rate 9%">🇱🇹 Lithuania</option>
+      <option data-tier="2" data-currency="PLN" data-rate="3.9500" data-vat="Yes, 8%" data-note="Restaurant 8%">🇵🇱 Poland</option>
+      <option data-tier="2" data-currency="RON" data-rate="4.7600" data-vat="Yes, 9%" data-note="Food 9%">🇷🇴 Romania</option>
+      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 10%" data-note="Restaurant 10%">🇸🇰 Slovakia</option>
+      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 9.5%" data-note="Restaurant 9.5%">🇸🇮 Slovenia</option>
+      <option data-tier="2" data-currency="SEK" data-rate="10.700" data-vat="Yes, 12%" data-note="Restaurant 12%">🇸🇪 Sweden</option>
+      <option data-tier="2" data-currency="BGN" data-rate="1.9560" data-vat="Yes, 9%" data-note="Food 9%">🇧🇬 Bulgaria</option>
+      <option data-tier="2" data-currency="TRY" data-rate="35.200" data-vat="Yes, 1%" data-note="Reduced rate 1%">🇹🇷 Turkey</option>
+      <option data-tier="2" data-currency="CNY" data-rate="6.7130" data-vat="Yes, 6%" data-note="Food service 6%">🇨🇳 China</option>
+      <option data-tier="2" data-currency="HKD" data-rate="7.8000" data-vat="No VAT" data-note="No GST/VAT">🇭🇰 Hong Kong</option>
+      <option data-tier="2" data-currency="TWD" data-rate="32.800" data-vat="Yes, 5%" data-note="VAT 5%">🇹🇼 Taiwan</option>
+      <option data-tier="2" data-currency="KRW" data-rate="1310.0" data-vat="Yes, 10%" data-note="VAT 10%">🇰🇷 South Korea</option>
+      <option data-tier="2" data-currency="MYR" data-rate="4.3000" data-vat="Yes, 6%" data-note="SST 6%">🇲🇾 Malaysia</option>
+      <option data-tier="2" data-currency="THB" data-rate="34.200" data-vat="Yes, 7%" data-note="VAT 7%">🇹🇭 Thailand</option>
+      <option data-tier="2" data-currency="VND" data-rate="24300.0" data-vat="Yes, 5%" data-note="VAT 5%">🇻🇳 Vietnam</option>
+      <option data-tier="2" data-currency="IDR" data-rate="15400.0" data-vat="Yes, 11%" data-note="VAT 11%">🇮🇩 Indonesia</option>
+      <option data-tier="2" data-currency="PHP" data-rate="57.500" data-vat="Yes, 12%" data-note="VAT 12%">🇵🇭 Philippines</option>
+      <option data-tier="2" data-currency="INR" data-rate="94.485" data-vat="Yes, 18%" data-note="GST 18%">🇮🇳 India</option>
+      <option data-tier="2" data-currency="AED" data-rate="3.6726" data-vat="Yes, 5%" data-note="VAT 5%">🇦🇪 UAE</option>
+      <option data-tier="2" data-currency="SAR" data-rate="3.7549" data-vat="Yes, 15%" data-note="VAT 15%">🇸🇦 Saudi Arabia</option>
+      <option data-tier="2" data-currency="QAR" data-rate="3.6400" data-vat="No VAT" data-note="No VAT">🇶🇦 Qatar</option>
+      <option data-tier="2" data-currency="KWD" data-rate="0.3080" data-vat="No VAT" data-note="No VAT">🇰🇼 Kuwait</option>
+      <option data-tier="2" data-currency="BHD" data-rate="0.3770" data-vat="Yes, 10%" data-note="VAT 10%">🇧🇭 Bahrain</option>
+      <option data-tier="2" data-currency="OMR" data-rate="0.3850" data-vat="No VAT" data-note="No VAT">🇴🇲 Oman</option>
+      <option data-tier="2" data-currency="JOD" data-rate="0.7090" data-vat="Yes, 16%" data-note="VAT 16%">🇯🇴 Jordan</option>
+      <option data-tier="2" data-currency="EGP" data-rate="48.500" data-vat="Yes, 5%" data-note="VAT 5%">🇪🇬 Egypt</option>
+      <option data-tier="2" data-currency="ZAR" data-rate="15.983" data-vat="Yes, 15%" data-note="VAT 15%">🇿🇦 South Africa</option>
+      <option data-tier="2" data-currency="NZD" data-rate="1.4600" data-vat="Yes, 15%" data-note="GST 15%">🇳🇿 New Zealand</option>
+      <option data-tier="2" data-currency="RUB" data-rate="96.500" data-vat="Yes, 20%" data-note="VAT 20%">🇷🇺 Russia</option>
+      <option data-tier="2" data-currency="UAH" data-rate="41.200" data-vat="Yes, 20%" data-note="VAT 20%">🇺🇦 Ukraine</option>
+      <option data-tier="2" data-currency="KZT" data-rate="475.00" data-vat="Yes, 12%" data-note="VAT 12%">🇰🇿 Kazakhstan</option>
+
+      <option disabled class="group">───── Tier 3 ─────</option>
+      <option data-tier="3" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 10%" data-note="Food 10% / Alcohol 21%">🇪🇸 Spain</option>
+      <option data-tier="3" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 6%" data-note="Food 6%">🇵🇹 Portugal</option>
+      <option data-tier="3" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 24%" data-note="Standard rate 24%">🇬🇷 Greece</option>
+      <option data-tier="3" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 20%" data-note="Standard rate 20%">🇨🇾 Cyprus</option>
+      <option data-tier="3" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 19%" data-note="Standard rate 19%">🇲🇹 Malta</option>
+      <option data-tier="3" data-currency="BRL" data-rate="5.7000" data-vat="Yes, 17%" data-note="ICMS approx 17%">🇧🇷 Brazil</option>
+      <option data-tier="3" data-currency="MXN" data-rate="19.500" data-vat="Yes, 16%" data-note="VAT 16%">🇲🇽 Mexico</option>
+      <option data-tier="3" data-currency="COP" data-rate="3850.00" data-vat="Yes, 19%" data-note="VAT 19%">🇨🇴 Colombia</option>
+      <option data-tier="3" data-currency="PEN" data-rate="3.7500" data-vat="Yes, 18%" data-note="VAT 18%">🇵🇪 Peru</option>
+      <option data-tier="3" data-currency="CLP" data-rate="955.00" data-vat="Yes, 19%" data-note="VAT 19%">🇨🇱 Chile</option>
+      <option data-tier="3" data-currency="ARS" data-rate="920.00" data-vat="Yes, 21%" data-note="VAT 21%">🇦🇷 Argentina</option>
+      <option data-tier="3" data-currency="GTQ" data-rate="7.7500" data-vat="Yes, 12%" data-note="VAT 12%">🇬🇹 Guatemala</option>
+      <option data-tier="3" data-currency="PAB" data-rate="1.0000" data-vat="No VAT" data-note="No VAT">🇵🇦 Panama</option>
+      <option data-tier="3" data-currency="CRC" data-rate="515.00" data-vat="Yes, 13%" data-note="VAT 13%">🇨🇷 Costa Rica</option>
+
+      <option disabled class="group">───── Tier 4 ─────</option>
+      <option data-tier="4" data-currency="NGN" data-rate="1550.00" data-vat="Yes, 7.5%" data-note="VAT 7.5%">🇳🇬 Nigeria</option>
+      <option data-tier="4" data-currency="KES" data-rate="128.00" data-vat="Yes, 16%" data-note="VAT 16%">🇰🇪 Kenya</option>
+      <option data-tier="4" data-currency="GHS" data-rate="15.200" data-vat="Yes, 15%" data-note="VAT 15%">🇬🇭 Ghana</option>
+      <option data-tier="4" data-currency="UGX" data-rate="3800.00" data-vat="Yes, 18%" data-note="VAT 18%">🇺🇬 Uganda</option>
+      <option data-tier="4" data-currency="TZS" data-rate="2450.00" data-vat="Yes, 18%" data-note="VAT 18%">🇹🇿 Tanzania</option>
+      <option data-tier="4" data-currency="ZMW" data-rate="28.500" data-vat="Yes, 16%" data-note="VAT 16%">🇿🇲 Zambia</option>
+      <option data-tier="4" data-currency="ETB" data-rate="58.000" data-vat="Yes, 15%" data-note="VAT 15%">🇪🇹 Ethiopia</option>
+      <option data-tier="4" data-currency="MAR" data-rate="16.800" data-vat="Yes, 20%" data-note="VAT 20%">🇲🇦 Morocco</option>
+      <option data-tier="4" data-currency="TND" data-rate="3.0800" data-vat="Yes, 19%" data-note="VAT 19%">🇹🇳 Tunisia</option>
+      <option data-tier="4" data-currency="PKR" data-rate="285.00" data-vat="Yes, 18%" data-note="VAT 18%">🇵🇰 Pakistan</option>
+      <option data-tier="4" data-currency="BDT" data-rate="118.00" data-vat="Yes, 7.5%" data-note="VAT 7.5%">🇧🇩 Bangladesh</option>
+      <option data-tier="4" data-currency="LKR" data-rate="305.00" data-vat="Yes, 7%" data-note="VAT 7%">🇱🇰 Sri Lanka</option>
+      <option data-tier="4" data-currency="NPR" data-rate="133.00" data-vat="Yes, 13%" data-note="VAT 13%">🇳🇵 Nepal</option>
+      <option data-tier="4" data-currency="MMK" data-rate="2100.00" data-vat="Yes, 5%" data-note="VAT 5%">🇲🇲 Myanmar</option>
+      <option data-tier="4" data-currency="KHR" data-rate="4100.00" data-vat="Yes, 10%" data-note="VAT 10%">🇰🇭 Cambodia</option>
+      <option data-tier="4" data-currency="LAK" data-rate="19600.00" data-vat="Yes, 7%" data-note="VAT 7%">🇱🇦 Laos</option>
+      <option data-tier="4" data-currency="BND" data-rate="1.2670" data-vat="No VAT" data-note="No VAT">🇧🇳 Brunei</option>
+      <option data-tier="4" data-currency="PGK" data-rate="3.7000" data-vat="Yes, 10%" data-note="GST 10%">🇵🇬 Papua New Guinea</option>
+      <option data-tier="4" data-currency="FJD" data-rate="2.2500" data-vat="Yes, 9%" data-note="VAT 9%">🇫🇯 Fiji</option>
+    </select>
+  </div>
 
   <div id="ans">
-    <div class="tier">Tier <span id="tn"></span></div>
-    <div class="rate">💱 Exchange rate: <strong>1 USD = <span id="rt"></span></strong></div>
-    <div class="vat">💳 Restaurant VAT: <strong id="vt"></strong><br><small id="vtn"></small></div>
-    <div class="row">
-      <div class="tt">🥐 Breakfast</div>
-      <div class="usd" id="bu"></div>
-      <div class="hk" id="bl"></div>
-    </div>
-    <div class="row">
-      <div class="tt">🍽️ Lunch</div>
-      <div class="usd" id="lu"></div>
-      <div class="hk" id="ll"></div>
-    </div>
-    <div class="row">
-      <div class="tt">🍷 Dinner</div>
-      <div class="usd" id="du"></div>
-      <div class="hk" id="dl"></div>
-    </div>
+    <div class="tier-placeholder">Tier</div>
+    <div class="rate placeholder-text">💱 Exchange rate: 1 USD = —</div>
+    <div class="vat placeholder-text">💳 Restaurant VAT: —</div>
+    <div class="row"><div class="tt">🥐 Breakfast</div><div class="usd placeholder-text">$ — USD</div></div>
+    <div class="row"><div class="tt">🍽️ Lunch</div><div class="usd placeholder-text">$ — USD</div></div>
+    <div class="row"><div class="tt">🍷 Dinner</div><div class="usd placeholder-text">$ — USD</div></div>
   </div>
 
   <div class="setting-box">
@@ -111,6 +170,16 @@ select{width:100%;padding:14px;font-size:16px;border-radius:12px;border:none;bac
       <button class="toggle-btn" id="toggleBtn">Show ▼</button>
     </div>
     <div id="settingsPanel" style="display:none">
+      <div class="tier-select-row">
+        <label>Select Tier:</label>
+        <select id="tierSelector" onchange="loadTierValues()">
+          <option value="t1">Tier 1</option>
+          <option value="t2">Tier 2</option>
+          <option value="t3">Tier 3</option>
+          <option value="t4">Tier 4</option>
+        </select>
+      </div>
+
       <div class="input-row">
         <label>Breakfast</label>
         <input type="number" id="inB" step="0.01">
@@ -123,66 +192,189 @@ select{width:100%;padding:14px;font-size:16px;border-radius:12px;border:none;bac
         <label>Dinner</label>
         <input type="number" id="inD" step="0.01">
       </div>
-      <button class="save-btn" id="saveBtn">💾 Save & Update All</button>
-      <div class="saved-msg" id="savedMsg">✅ Saved! All amounts updated</div>
+
+      <button class="save-btn" id="saveBtn">💾 Save & Update All Calculations</button>
+      <div class="saved-msg" id="savedMsg" style="display:none">✅ Saved! All amounts & calculations updated</div>
+
+      <div class="summary-box" id="summaryBox">
+        <div class="summary-title">📋 Updated Allowance Summary (USD)</div>
+        <div class="summary-row"><strong>Tier 1</strong> — Breakfast: <span id="sumB1"></span> · Lunch: <span id="sumL1"></span> · Dinner: <span id="sumD1"></span></div>
+        <div class="summary-row"><strong>Tier 2</strong> — Breakfast: <span id="sumB2"></span> · Lunch: <span id="sumL2"></span> · Dinner: <span id="sumD2"></span></div>
+        <div class="summary-row"><strong>Tier 3</strong> — Breakfast: <span id="sumB3"></span> · Lunch: <span id="sumL3"></span> · Dinner: <span id="sumD3"></span></div>
+        <div class="summary-row"><strong>Tier 4</strong> — Breakfast: <span id="sumB4"></span> · Lunch: <span id="sumL4"></span> · Dinner: <span id="sumD4"></span></div>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-let val = { b:30, l:45, d:75, b2:25, l2:40, d2:70, b4:20, l4:30, d4:60 };
-const S={USD:'$',GBP:'£',EUR:'€',CNY:'¥',JPY:'¥',SGD:'S$',CHF:'CHF',DKK:'kr',NOK:'kr',SEK:'kr',CAD:'C$',AUD:'A$',AED:'AED',SAR:'SAR',KRW:'₩',ZAR:'R',BRL:'R$',CLP:'$',CZK:'Kč',INR:'₹',IDR:'Rp',MYR:'RM',PHP:'₱',PLN:'zł',THB:'฿',VND:'₫'};
+// ✅ 匯率資料更新時間
+const DATA_REFRESH_DATE = '4 September 2026';
+
+// ✅ 出廠預設值（按 Reset 會用返呢套）
+const DEFAULT_VAL = { 
+  b1:30.00, l1:45.00, d1:75.00,
+  b2:25.00, l2:40.00, d2:70.00,
+  b3:25.00, l3:35.00, d3:65.00,
+  b4:20.00, l4:30.00, d4:60.00
+};
+
+let val = { ...DEFAULT_VAL };
+
+const S={USD:'$',GBP:'£',EUR:'€',CNY:'¥',HKD:'HK$',TWD:'NT$',JPY:'¥',SGD:'S$',CHF:'CHF',DKK:'kr',NOK:'kr',SEK:'kr',CAD:'C$',AUD:'A$',NZD:'NZ$',AED:'AED',SAR:'SAR',QAR:'QR',KWD:'KD',BHD:'BD',OMR:'OMR',JOD:'JD',EGP:'E£',ZAR:'R',KRW:'₩',MYR:'RM',THB:'฿',VND:'₫',IDR:'Rp',PHP:'₱',INR:'₹',RUB:'₽',UAH:'₴',KZT:'₸',BGN:'лв',TRY:'₺',HRK:'kn',CZK:'Kč',HUF:'Ft',PLN:'zł',RON:'lei',BRL:'R$',MXN:'Mex$',COP:'$',PEN:'S/',CLP:'$',ARS:'ARS$',NGN:'₦',KES:'KSh',GHS:'GH₵',UGX:'USh',TZS:'TSh',ZMW:'ZK',ETB:'Br',MAR:'DH',TND:'DT',PKR:'Rs',BDT:'৳',LKR:'Rs',NPR:'NPR',MMK:'Ks',KHR:'៛',LAK:'₭',BND:'B$',PGK:'K',FJD:'FJ$',GTQ:'Q',PAB:'B/.',CRC:'₡'};
+
+// ✅ 記住用家而家選咗邊個國家（按 Save 之後自動用返）
+let lastSelectedCountryValue = '';
+
+// ✅ 預設空白版面
+function showPlaceholder(){
+  document.getElementById('ans').innerHTML=`
+    <div class="tier-placeholder">Tier</div>
+    <div class="rate placeholder-text">💱 Exchange rate: 1 USD = —</div>
+    <div class="vat placeholder-text">💳 Restaurant VAT: —</div>
+    <div class="row"><div class="tt">🥐 Breakfast</div><div class="usd placeholder-text">$ — USD</div></div>
+    <div class="row"><div class="tt">🍽️ Lunch</div><div class="usd placeholder-text">$ — USD</div></div>
+    <div class="row"><div class="tt">🍷 Dinner</div><div class="usd placeholder-text">$ — USD</div></div>
+  `;
+}
+
+// ✅ 更新 Summary 顯示
+function updateSummary(){
+  document.getElementById('sumB1').textContent='$'+val.b1.toFixed(2);
+  document.getElementById('sumL1').textContent='$'+val.l1.toFixed(2);
+  document.getElementById('sumD1').textContent='$'+val.d1.toFixed(2);
+  document.getElementById('sumB2').textContent='$'+val.b2.toFixed(2);
+  document.getElementById('sumL2').textContent='$'+val.l2.toFixed(2);
+  document.getElementById('sumD2').textContent='$'+val.d2.toFixed(2);
+  document.getElementById('sumB3').textContent='$'+val.b3.toFixed(2);
+  document.getElementById('sumL3').textContent='$'+val.l3.toFixed(2);
+  document.getElementById('sumD3').textContent='$'+val.d3.toFixed(2);
+  document.getElementById('sumB4').textContent='$'+val.b4.toFixed(2);
+  document.getElementById('sumL4').textContent='$'+val.l4.toFixed(2);
+  document.getElementById('sumD4').textContent='$'+val.d4.toFixed(2);
+}
 
 function loadSettings(){
   const saved=localStorage.getItem('mealAllowanceVals');
-  if(saved){ val=JSON.parse(saved); }
-  document.getElementById('inB').value=val.b;
-  document.getElementById('inL').value=val.l;
-  document.getElementById('inD').value=val.d;
+  if(saved){
+    try{
+      const parsed=JSON.parse(saved);
+      if(parsed && parsed.b1 && parsed.b3){
+        val = parsed;
+      }else{
+        localStorage.removeItem('mealAllowanceVals');
+        val = { ...DEFAULT_VAL };
+      }
+    }catch(e){
+      localStorage.removeItem('mealAllowanceVals');
+      val = { ...DEFAULT_VAL };
+    }
+  }
+  loadTierValues();
+  updateSummary();
+  showPlaceholder();
+}
+
+function loadTierValues(){
+  const tier=document.getElementById('tierSelector').value;
+  if(tier==='t1'){ document.getElementById('inB').value=val.b1.toFixed(2); document.getElementById('inL').value=val.l1.toFixed(2); document.getElementById('inD').value=val.d1.toFixed(2); }
+  else if(tier==='t2'){ document.getElementById('inB').value=val.b2.toFixed(2); document.getElementById('inL').value=val.l2.toFixed(2); document.getElementById('inD').value=val.d2.toFixed(2); }
+  else if(tier==='t3'){ document.getElementById('inB').value=val.b3.toFixed(2); document.getElementById('inL').value=val.l3.toFixed(2); document.getElementById('inD').value=val.d3.toFixed(2); }
+  else if(tier==='t4'){ document.getElementById('inB').value=val.b4.toFixed(2); document.getElementById('inL').value=val.l4.toFixed(2); document.getElementById('inD').value=val.d4.toFixed(2); }
 }
 
 document.getElementById('saveBtn').onclick=function(){
-  const newB=parseFloat(document.getElementById('inB').value)||30;
-  const newL=parseFloat(document.getElementById('inL').value)||45;
-  const newD=parseFloat(document.getElementById('inD').value)||75;
-  val.b=newB; val.l=newL; val.d=newD;
-  val.b2=+(newB*(25/30)).toFixed(4);
-  val.l2=+(newL*(40/45)).toFixed(4);
-  val.d2=+(newD*(70/75)).toFixed(4);
-  val.b4=+(newB*(20/30)).toFixed(4);
-  val.l4=+(newL*(30/45)).toFixed(4);
-  val.d4=+(newD*(60/75)).toFixed(4);
+  const tier=document.getElementById('tierSelector').value;
+  const b=parseFloat(document.getElementById('inB').value)||0;
+  const l=parseFloat(document.getElementById('inL').value)||0;
+  const d=parseFloat(document.getElementById('inD').value)||0;
+
+  // ✅ 即時覆蓋寫入新數值
+  if(tier==='t1'){ val.b1=b; val.l1=l; val.d1=d; }
+  else if(tier==='t2'){ val.b2=b; val.l2=l; val.d2=d; }
+  else if(tier==='t3'){ val.b3=b; val.l3=l; val.d3=d; }
+  else if(tier==='t4'){ val.b4=b; val.l4=l; val.d4=d; }
+
+  // ✅ 永久儲存（覆蓋舊資料）
   localStorage.setItem('mealAllowanceVals',JSON.stringify(val));
-  const msg=document.getElementById('savedMsg'); msg.style.display='block'; setTimeout(()=>{msg.style.display='none'},2500);
-  if(document.getElementById('c').value){ go(); }
+
+  // ✅ 更新 Summary
+  updateSummary();
+
+  // ✅ 自動重新計算主畫面（已選國家即時跟住變）
+  if(lastSelectedCountryValue){
+    document.getElementById('c').value = lastSelectedCountryValue;
+    go();
+  }
+
+  // ✅ 顯示儲存成功提示
+  document.getElementById('savedMsg').style.display='block';
+  setTimeout(()=>{document.getElementById('savedMsg').style.display='none'},3500);
 };
 
 document.getElementById('toggleBtn').onclick=function(){
   const p=document.getElementById('settingsPanel');
-  p.style.display=p.style.display==='block'?'none':'block';
-  this.textContent=p.style.display==='block'?'Hide ▲':'Show ▼';
+  const show=p.style.display!=='block';
+  p.style.display=show?'block':'none';
+  this.textContent=show?'Hide ▲':'Show ▼';
+  if(show){ updateSummary(); }
 };
 
+const searchInput=document.getElementById('searchInput');
+const selectBox=document.getElementById('c');
+const allOptions=Array.from(selectBox.options);
+searchInput.addEventListener('input',function(){
+  const q=this.value.toLowerCase().trim();
+  selectBox.innerHTML='';
+  allOptions.forEach(opt=>{
+    if(opt.disabled||opt.text.toLowerCase().includes(q)||q===''){ selectBox.appendChild(opt); }
+  });
+});
+
+// ✅ 選國家 → 記住佢 + 顯示資料
 function go(){
-  const s=document.getElementById('c'); const o=s.selectedOptions[0];
-  if(!o.value){document.getElementById('ans').style.display='none';return}
-  const t=+o.getAttribute('t'); const c=o.getAttribute('c'); const r=+o.getAttribute('r');
-  const vat=o.getAttribute('vat'); const note=o.getAttribute('note');
+  const s=document.getElementById('c');
+  const o=s.selectedOptions[0];
+  const ans=document.getElementById('ans');
+
+  // ✅ 記住而家選咗邊個（Save 之後自動用返）
+  lastSelectedCountryValue = o.value;
+
+  if(!o.value){
+    showPlaceholder();
+    return;
+  }
+
+  const t = Number(o.dataset.tier);
+  const c = o.dataset.currency;
+  const r = Number(o.dataset.rate);
+  const vat = o.dataset.vat;
+  const note = o.dataset.note;
+
   let vb,vl,vd;
-  if(t===1||t===3){ vb=val.b; vl=val.l; vd=val.d; }
-  else if(t===2){ vb=val.b2; vl=val.l2; vd=val.d2; }
-  else{ vb=val.b4; vl=val.l4; vd=val.d4; }
-  document.getElementById('tn').textContent=t;
-  document.getElementById('rt').textContent=(S[c]||c+' ')+r.toFixed(4);
-  document.getElementById('vt').textContent=vat; document.getElementById('vtn').textContent=note;
-  document.getElementById('bu').textContent='$'+vb.toFixed(2)+' USD';
-  document.getElementById('lu').textContent='$'+vl.toFixed(2)+' USD';
-  document.getElementById('du').textContent='$'+vd.toFixed(2)+' USD';
-  document.getElementById('bl').textContent=(S[c]||c+' ')+(vb*r).toFixed(2);
-  document.getElementById('ll').textContent=(S[c]||c+' ')+(vl*r).toFixed(2);
-  document.getElementById('dl').textContent=(S[c]||c+' ')+(vd*r).toFixed(2);
-  document.getElementById('ans').style.display='block';
+  if(t===1){
+    vb=val.b1; vl=val.l1; vd=val.d1;
+  }else if(t===2){
+    vb=val.b2; vl=val.l2; vd=val.d2;
+  }else if(t===3){
+    vb=val.b3; vl=val.l3; vd=val.d3;
+  }else if(t===4){
+    vb=val.b4; vl=val.l4; vd=val.d4;
+  }
+
+  const sym=S[c]||(c+' ');
+
+  ans.innerHTML=`
+    <div class="tier">Tier ${t}</div>
+    <div class="rate">💱 Exchange rate: <strong>1 USD = ${sym}${r.toFixed(4)}</strong></div>
+    <div class="refresh">📊 Data refreshed: ${DATA_REFRESH_DATE}</div>
+    <div class="vat">💳 Restaurant VAT: <strong>${vat}</strong><br><small>${note}</small></div>
+    <div class="row"><div class="tt">🥐 Breakfast</div><div class="usd">$${vb.toFixed(2)} USD</div><div class="hk">${sym}${(vb*r).toFixed(2)}</div></div>
+    <div class="row"><div class="tt">🍽️ Lunch</div><div class="usd">$${vl.toFixed(2)} USD</div><div class="hk">${sym}${(vl*r).toFixed(2)}</div></div>
+    <div class="row"><div class="tt">🍷 Dinner</div><div class="usd">$${vd.toFixed(2)} USD</div><div class="hk">${sym}${(vd*r).toFixed(2)}</div></div>
+  `;
 }
+
 loadSettings();
 </script>
 </body>
