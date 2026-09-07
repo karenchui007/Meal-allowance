@@ -8,7 +8,7 @@
 body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#0F172A;color:#fff;padding:16px 14px;margin:0}
 .box{max-width:440px;margin:0 auto}
 h1{text-align:center;font-size:22px;margin:4px 0 4px}
-.sub{text-align:center;font-size:12px;color:#94A3B8;margin-bottom:10px}
+.sub{text-align:center;font-size:12px;color:#94A3B8;margin-bottom:16px}
 .select-wrapper{border-radius:12px;background:#334155;overflow:hidden;margin-bottom:16px}
 .search-box{width:100%;padding:10px 12px;font-size:15px;border:none;border-bottom:1px solid #475569;background:#1E293B;color:#fff;box-sizing:border-box;outline:none}
 .search-box::placeholder{color:#64748B}
@@ -58,94 +58,95 @@ select{width:100%;padding:10px 12px;font-size:15px;border:none;background:#33415
     <select id="c" onchange="go()" size="2">
       <option value="">👉 Select country / region</option>
       <option disabled class="group">───── Tier 1 ─────</option>
-      <option data-tier="1" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 12%" data-note="Restaurant 12%">🇧🇪 Belgium</option>
-      <option data-tier="1" data-currency="KYD" data-rate="0.8300" data-vat="No VAT" data-note="No VAT/GST">🇰🇾 Cayman Islands</option>
-      <option data-tier="1" data-currency="DKK" data-rate="6.9000" data-vat="Yes, 25%" data-note="Standard rate 25%">🇩🇰 Denmark</option>
-      <option data-tier="1" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 10%" data-note="Food 10%">🇫🇷 France</option>
-      <option data-tier="1" data-currency="ISK" data-rate="138.00" data-vat="Yes, 24%" data-note="Standard rate 24%">🇮🇸 Iceland</option>
-      <option data-tier="1" data-currency="ILS" data-rate="3.7000" data-vat="Yes, 18%" data-note="Standard rate 18%">🇮🇱 Israel</option>
-      <option data-tier="1" data-currency="CHF" data-rate="0.8087" data-vat="Yes, 7.7%" data-note="Reduced rate 7.7%">🇱🇮 Liechtenstein</option>
-      <option data-tier="1" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 20%" data-note="Standard rate 20%">🇲🇨 Monaco</option>
-      <option data-tier="1" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 9%" data-note="Restaurant 9%">🇳🇱 Netherlands</option>
-      <option data-tier="1" data-currency="NOK" data-rate="10.800" data-vat="Yes, 25%" data-note="Standard rate 25%">🇳🇴 Norway</option>
-      <option data-tier="1" data-currency="SGD" data-rate="1.2670" data-vat="Yes, 9%" data-note="GST 9%">🇸🇬 Singapore</option>
-      <option data-tier="1" data-currency="CHF" data-rate="0.8087" data-vat="Yes, 8.1%" data-note="Restaurant 8.1%">🇨🇭 Switzerland</option>
-      <option data-tier="1" data-currency="USD" data-rate="1.0000" data-vat="No VAT" data-note="No national VAT">🇹🇨 Turks and Caicos Islands</option>
-      <option data-tier="1" data-currency="USD" data-rate="1.0000" data-vat="No federal VAT" data-note="State sales tax 0–10%">🇺🇸 United States</option>
+      <option data-tier="1" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 12%" data-note="Restaurant 12%">🇧🇪 Belgium</option>
+      <option data-tier="1" data-currency="KYD" data-fallback="0.8300" data-vat="No VAT" data-note="No VAT/GST">🇰🇾 Cayman Islands</option>
+      <option data-tier="1" data-currency="DKK" data-fallback="6.9000" data-vat="Yes, 25%" data-note="Standard rate 25%">🇩🇰 Denmark</option>
+      <option data-tier="1" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 10%" data-note="Food 10%">🇫🇷 France</option>
+      <option data-tier="1" data-currency="ISK" data-fallback="138.00" data-vat="Yes, 24%" data-note="Standard rate 24%">🇮🇸 Iceland</option>
+      <option data-tier="1" data-currency="ILS" data-fallback="3.7000" data-vat="Yes, 18%" data-note="Standard rate 18%">🇮🇱 Israel</option>
+      <option data-tier="1" data-currency="CHF" data-fallback="0.8087" data-vat="Yes, 7.7%" data-note="Reduced rate 7.7%">🇱🇮 Liechtenstein</option>
+      <option data-tier="1" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 20%" data-note="Standard rate 20%">🇲🇨 Monaco</option>
+      <option data-tier="1" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 9%" data-note="Restaurant 9%">🇳🇱 Netherlands</option>
+      <option data-tier="1" data-currency="NOK" data-fallback="10.800" data-vat="Yes, 25%" data-note="Standard rate 25%">🇳🇴 Norway</option>
+      <option data-tier="1" data-currency="SGD" data-fallback="1.2670" data-vat="Yes, 9%" data-note="GST 9%">🇸🇬 Singapore</option>
+      <option data-tier="1" data-currency="CHF" data-fallback="0.8087" data-vat="Yes, 8.1%" data-note="Restaurant 8.1%">🇨🇭 Switzerland</option>
+      <option data-tier="1" data-currency="USD" data-fallback="1.0000" data-vat="No VAT" data-note="No national VAT">🇹🇨 Turks and Caicos Islands</option>
+      <option data-tier="1" data-currency="USD" data-fallback="1.0000" data-vat="No federal VAT" data-note="State sales tax 0–10%">🇺🇸 United States</option>
 
       <option disabled class="group">───── Tier 2 ─────</option>
-      <option data-tier="2" data-currency="AOA" data-rate="920.00" data-vat="Yes, 14%" data-note="Standard rate 14%">🇦🇴 Angola</option>
-      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 10%" data-note="Restaurant 10%">🇦🇹 Austria</option>
-      <option data-tier="2" data-currency="CAD" data-rate="1.3800" data-vat="Yes, 5%" data-note="GST 5%">🇨🇦 Canada</option>
-      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 19%" data-note="Standard rate 19%">🇨🇾 Cyprus</option>
-      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 24%" data-note="Standard rate 24%">🇫🇮 Finland</option>
-      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 7%" data-note="Food 7%">🇩🇪 Germany</option>
-      <option data-tier="2" data-currency="GHS" data-rate="15.200" data-vat="Yes, 15%" data-note="VAT 15%">🇬🇭 Ghana</option>
-      <option data-tier="2" data-currency="CNY" data-rate="6.7130" data-vat="Yes, 6%" data-note="Food service 6%">🇨🇳 Greater China</option>
-      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 9%" data-note="Effective Jul 2026">🇮🇪 Ireland</option>
-      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 10%" data-note="Restaurant 10%">🇮🇹 Italy</option>
-      <option data-tier="2" data-currency="KES" data-rate="128.00" data-vat="Yes, 16%" data-note="VAT 16%">🇰🇪 Kenya</option>
-      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 16%" data-note="Standard rate 16%">🇱🇺 Luxembourg</option>
-      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 19%" data-note="Standard rate 19%">🇲🇹 Malta</option>
-      <option data-tier="2" data-currency="NGN" data-rate="1550.00" data-vat="Yes, 7.5%" data-note="VAT 7.5%">🇳🇬 Nigeria</option>
-      <option data-tier="2" data-currency="USD" data-rate="1.0000" data-vat="Yes, 11.5%" data-note="Sales tax avg 11.5%">🇵🇷 Puerto Rico</option>
-      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 2.1%" data-note="Reduced rate 2.1%">🇷🇪 Réunion</option>
-      <option data-tier="2" data-currency="EUR" data-rate="0.8602" data-vat="No VAT" data-note="No VAT">🇸🇲 San Marino</option>
-      <option data-tier="2" data-currency="SAR" data-rate="3.7549" data-vat="Yes, 15%" data-note="VAT 15%">🇸🇦 Saudi Arabia</option>
-      <option data-tier="2" data-currency="ZAR" data-rate="15.983" data-vat="Yes, 15%" data-note="VAT 15%">🇿🇦 South Africa</option>
-      <option data-tier="2" data-currency="KRW" data-rate="1310.0" data-vat="Yes, 10%" data-note="VAT 10%">🇰🇷 South Korea</option>
-      <option data-tier="2" data-currency="SEK" data-rate="10.700" data-vat="Yes, 12%" data-note="Restaurant 12%">🇸🇪 Sweden</option>
-      <option data-tier="2" data-currency="TRY" data-rate="35.200" data-vat="Yes, 1%" data-note="Reduced rate 1%">🇹🇷 Turkey</option>
-      <option data-tier="2" data-currency="AED" data-rate="3.6726" data-vat="Yes, 5%" data-note="VAT 5%">🇦🇪 United Arab Emirates</option>
-      <option data-tier="2" data-currency="GBP" data-rate="0.7390" data-vat="Yes, 20%" data-note="Standard rate 20%">🇬🇧 United Kingdom</option>
-      <option data-tier="2" data-currency="USD" data-rate="1.0000" data-vat="No VAT" data-note="No VAT">🇻🇬 Virgin Islands (British)</option>
+      <option data-tier="2" data-currency="AOA" data-fallback="920.00" data-vat="Yes, 14%" data-note="Standard rate 14%">🇦🇴 Angola</option>
+      <option data-tier="2" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 10%" data-note="Restaurant 10%">🇦🇹 Austria</option>
+      <option data-tier="2" data-currency="CAD" data-fallback="1.3800" data-vat="Yes, 5%" data-note="GST 5%">🇨🇦 Canada</option>
+      <option data-tier="2" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 19%" data-note="Standard rate 19%">🇨🇾 Cyprus</option>
+      <option data-tier="2" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 24%" data-note="Standard rate 24%">🇫🇮 Finland</option>
+      <option data-tier="2" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 7%" data-note="Food 7%">🇩🇪 Germany</option>
+      <option data-tier="2" data-currency="GHS" data-fallback="15.200" data-vat="Yes, 15%" data-note="VAT 15%">🇬🇭 Ghana</option>
+      <option data-tier="2" data-currency="CNY" data-fallback="6.7130" data-vat="Yes, 6%" data-note="Food service 6%">🇨🇳 Greater China</option>
+      <option data-tier="2" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 9%" data-note="Effective Jul 2026">🇮🇪 Ireland</option>
+      <option data-tier="2" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 10%" data-note="Restaurant 10%">🇮🇹 Italy</option>
+      <option data-tier="2" data-currency="KES" data-fallback="128.00" data-vat="Yes, 16%" data-note="VAT 16%">🇰🇪 Kenya</option>
+      <option data-tier="2" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 16%" data-note="Standard rate 16%">🇱🇺 Luxembourg</option>
+      <option data-tier="2" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 19%" data-note="Standard rate 19%">🇲🇹 Malta</option>
+      <option data-tier="2" data-currency="NGN" data-fallback="1550.00" data-vat="Yes, 7.5%" data-note="VAT 7.5%">🇳🇬 Nigeria</option>
+      <option data-tier="2" data-currency="USD" data-fallback="1.0000" data-vat="Yes, 11.5%" data-note="Sales tax avg 11.5%">🇵🇷 Puerto Rico</option>
+      <option data-tier="2" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 2.1%" data-note="Reduced rate 2.1%">🇷🇪 Réunion</option>
+      <option data-tier="2" data-currency="EUR" data-fallback="0.8602" data-vat="No VAT" data-note="No VAT">🇸🇲 San Marino</option>
+      <option data-tier="2" data-currency="SAR" data-fallback="3.7549" data-vat="Yes, 15%" data-note="VAT 15%">🇸🇦 Saudi Arabia</option>
+      <option data-tier="2" data-currency="ZAR" data-fallback="15.983" data-vat="Yes, 15%" data-note="VAT 15%">🇿🇦 South Africa</option>
+      <option data-tier="2" data-currency="KRW" data-fallback="1310.0" data-vat="Yes, 10%" data-note="VAT 10%">🇰🇷 South Korea</option>
+      <option data-tier="2" data-currency="SEK" data-fallback="10.700" data-vat="Yes, 12%" data-note="Restaurant 12%">🇸🇪 Sweden</option>
+      <option data-tier="2" data-currency="TRY" data-fallback="35.200" data-vat="Yes, 1%" data-note="Reduced rate 1%">🇹🇷 Turkey</option>
+      <option data-tier="2" data-currency="AED" data-fallback="3.6726" data-vat="Yes, 5%" data-note="VAT 5%">🇦🇪 United Arab Emirates</option>
+      <option data-tier="2" data-currency="GBP" data-fallback="0.7390" data-vat="Yes, 20%" data-note="Standard rate 20%">🇬🇧 United Kingdom</option>
+      <option data-tier="2" data-currency="USD" data-fallback="1.0000" data-vat="No VAT" data-note="No VAT">🇻🇬 Virgin Islands (British)</option>
 
       <option disabled class="group">───── Tier 3 ─────</option>
-      <option data-tier="3" data-currency="DZD" data-rate="178.50" data-vat="Yes, 19%" data-note="Standard rate 19%">🇩🇿 Algeria</option>
-      <option data-tier="3" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 4.5%" data-note="Reduced rate 4.5%">🇦🇩 Andorra</option>
-      <option data-tier="3" data-currency="AUD" data-rate="1.3890" data-vat="Yes, 10%" data-note="GST 10%">🇦🇺 Australia</option>
-      <option data-tier="3" data-currency="BHD" data-rate="0.3770" data-vat="Yes, 10%" data-note="VAT 10%">🇧🇭 Bahrain</option>
-      <option data-tier="3" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 13%" data-note="Restaurant 13%">🇭🇷 Croatia</option>
-      <option data-tier="3" data-currency="ANG" data-rate="1.8000" data-vat="Yes, 6%" data-note="VAT 6%">🇨🇼 Curaçao</option>
-      <option data-tier="3" data-currency="EGP" data-rate="48.500" data-vat="Yes, 5%" data-note="VAT 5%">🇪🇬 Egypt</option>
-      <option data-tier="3" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 9%" data-note="Reduced rate 9%">🇪🇪 Estonia</option>
-      <option data-tier="3" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 6%" data-note="Food 6%">🇬🇷 Greece</option>
-      <option data-tier="3" data-currency="DKK" data-rate="6.9000" data-vat="Yes, 25%" data-note="Standard rate 25%">🇬🇱 Greenland</option>
-      <option data-tier="3" data-currency="JPY" data-rate="156.34" data-vat="Yes, 10%" data-note="Consumption tax 10%">🇯🇵 Japan</option>
-      <option data-tier="3" data-currency="KWD" data-rate="0.3080" data-vat="No VAT" data-note="No VAT">🇰🇼 Kuwait</option>
-      <option data-tier="3" data-currency="LBP" data-rate="89500.0" data-vat="Yes, 11%" data-note="VAT 11%">🇱🇧 Lebanon</option>
-      <option data-tier="3" data-currency="MUR" data-rate="46.100" data-vat="Yes, 15%" data-note="VAT 15%">🇲🇺 Mauritius</option>
-      <option data-tier="3" data-currency="NZD" data-rate="1.4600" data-vat="Yes, 15%" data-note="GST 15%">🇳🇿 New Zealand</option>
-      <option data-tier="3" data-currency="OMR" data-rate="0.3850" data-vat="No VAT" data-note="No VAT">🇴🇲 Oman</option>
-      <option data-tier="3" data-currency="PKR" data-rate="285.00" data-vat="Yes, 18%" data-note="VAT 18%">🇵🇰 Pakistan</option>
-      <option data-tier="3" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 6%" data-note="Food 6%">🇵🇹 Portugal</option>
-      <option data-tier="3" data-currency="QAR" data-rate="3.6400" data-vat="No VAT" data-note="No VAT">🇶🇦 Qatar</option>
-      <option data-tier="3" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 9.5%" data-note="Restaurant 9.5%">🇸🇮 Slovenia</option>
-      <option data-tier="3" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 10%" data-note="Food 10%">🇪🇸 Spain</option>
+      <option data-tier="3" data-currency="DZD" data-fallback="178.50" data-vat="Yes, 19%" data-note="Standard rate 19%">🇩🇿 Algeria</option>
+      <option data-tier="3" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 4.5%" data-note="Reduced rate 4.5%">🇦🇩 Andorra</option>
+      <option data-tier="3" data-currency="AUD" data-fallback="1.3890" data-vat="Yes, 10%" data-note="GST 10%">🇦🇺 Australia</option>
+      <option data-tier="3" data-currency="BHD" data-fallback="0.3770" data-vat="Yes, 10%" data-note="VAT 10%">🇧🇭 Bahrain</option>
+      <option data-tier="3" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 13%" data-note="Restaurant 13%">🇭🇷 Croatia</option>
+      <option data-tier="3" data-currency="ANG" data-fallback="1.8000" data-vat="Yes, 6%" data-note="VAT 6%">🇨🇼 Curaçao</option>
+      <option data-tier="3" data-currency="EGP" data-fallback="48.500" data-vat="Yes, 5%" data-note="VAT 5%">🇪🇬 Egypt</option>
+      <option data-tier="3" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 9%" data-note="Reduced rate 9%">🇪🇪 Estonia</option>
+      <option data-tier="3" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 6%" data-note="Food 6%">🇬🇷 Greece</option>
+      <option data-tier="3" data-currency="DKK" data-fallback="6.9000" data-vat="Yes, 25%" data-note="Standard rate 25%">🇬🇱 Greenland</option>
+      <option data-tier="3" data-currency="JPY" data-fallback="156.34" data-vat="Yes, 10%" data-note="Consumption tax 10%">🇯🇵 Japan</option>
+      <option data-tier="3" data-currency="KWD" data-fallback="0.3080" data-vat="No VAT" data-note="No VAT">🇰🇼 Kuwait</option>
+      <option data-tier="3" data-currency="LBP" data-fallback="89500.0" data-vat="Yes, 11%" data-note="VAT 11%">🇱🇧 Lebanon</option>
+      <option data-tier="3" data-currency="MUR" data-fallback="46.100" data-vat="Yes, 15%" data-note="VAT 15%">🇲🇺 Mauritius</option>
+      <option data-tier="3" data-currency="NZD" data-fallback="1.4600" data-vat="Yes, 15%" data-note="GST 15%">🇳🇿 New Zealand</option>
+      <option data-tier="3" data-currency="OMR" data-fallback="0.3850" data-vat="No VAT" data-note="No VAT">🇴🇲 Oman</option>
+      <option data-tier="3" data-currency="PKR" data-fallback="285.00" data-vat="Yes, 18%" data-note="VAT 18%">🇵🇰 Pakistan</option>
+      <option data-tier="3" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 6%" data-note="Food 6%">🇵🇹 Portugal</option>
+      <option data-tier="3" data-currency="QAR" data-fallback="3.6400" data-vat="No VAT" data-note="No VAT">🇶🇦 Qatar</option>
+      <option data-tier="3" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 9.5%" data-note="Restaurant 9.5%">🇸🇮 Slovenia</option>
+      <option data-tier="3" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 10%" data-note="Food 10%">🇪🇸 Spain</option>
 
       <option disabled class="group">───── Tier 4 ─────</option>
-      <option data-tier="4" data-currency="ARS" data-rate="920.00" data-vat="Yes, 21%" data-note="VAT 21%">🇦🇷 Argentina</option>
-      <option data-tier="4" data-currency="BRL" data-rate="5.7000" data-vat="Yes, 17%" data-note="ICMS approx 17%">🇧🇷 Brazil</option>
-      <option data-tier="4" data-currency="CLP" data-rate="955.00" data-vat="Yes, 19%" data-note="VAT 19%">🇨🇱 Chile</option>
-      <option data-tier="4" data-currency="COP" data-rate="3850.00" data-vat="Yes, 19%" data-note="VAT 19%">🇨🇴 Colombia</option>
-      <option data-tier="4" data-currency="CRC" data-rate="515.00" data-vat="Yes, 13%" data-note="VAT 13%">🇨🇷 Costa Rica</option>
-      <option data-tier="4" data-currency="CZK" data-rate="22.300" data-vat="Yes, 12%" data-note="Restaurant 12%">🇨🇿 Czech Republic</option>
-      <option data-tier="4" data-currency="DOP" data-rate="58.100" data-vat="Yes, 18%" data-note="VAT 18%">🇩🇴 Dominican Republic</option>
-      <option data-tier="4" data-currency="INR" data-rate="94.485" data-vat="Yes, 18%" data-note="GST 18%">🇮🇳 India</option>
-      <option data-tier="4" data-currency="IDR" data-rate="15400.0" data-vat="Yes, 11%" data-note="VAT 11%">🇮🇩 Indonesia</option>
-      <option data-tier="4" data-currency="MYR" data-rate="4.3000" data-vat="Yes, 6%" data-note="SST 6%">🇲🇾 Malaysia</option>
-      <option data-tier="4" data-currency="MXN" data-rate="19.500" data-vat="Yes, 16%" data-note="VAT 16%">🇲🇽 Mexico</option>
-      <option data-tier="4" data-currency="PHP" data-rate="57.500" data-vat="Yes, 12%" data-note="VAT 12%">🇵🇭 Philippines</option>
-      <option data-tier="4" data-currency="PLN" data-rate="3.9500" data-vat="Yes, 8%" data-note="Restaurant 8%">🇵🇱 Poland</option>
-      <option data-tier="4" data-currency="EUR" data-rate="0.8602" data-vat="Yes, 10%" data-note="Restaurant 10%">🇸🇰 Slovakia</option>
-      <option data-tier="4" data-currency="THB" data-rate="34.200" data-vat="Yes, 7%" data-note="VAT 7%">🇹🇭 Thailand</option>
-      <option data-tier="4" data-currency="VND" data-rate="24300.0" data-vat="Yes, 5%" data-note="VAT 5%">🇻🇳 Vietnam</option>
+      <option data-tier="4" data-currency="ARS" data-fallback="920.00" data-vat="Yes, 21%" data-note="VAT 21%">🇦🇷 Argentina</option>
+      <option data-tier="4" data-currency="BRL" data-fallback="5.7000" data-vat="Yes, 17%" data-note="ICMS approx 17%">🇧🇷 Brazil</option>
+      <option data-tier="4" data-currency="CLP" data-fallback="955.00" data-vat="Yes, 19%" data-note="VAT 19%">🇨🇱 Chile</option>
+      <option data-tier="4" data-currency="COP" data-fallback="3850.00" data-vat="Yes, 19%" data-note="VAT 19%">🇨🇴 Colombia</option>
+      <option data-tier="4" data-currency="CRC" data-fallback="515.00" data-vat="Yes, 13%" data-note="VAT 13%">🇨🇷 Costa Rica</option>
+      <option data-tier="4" data-currency="CZK" data-fallback="22.300" data-vat="Yes, 12%" data-note="Restaurant 12%">🇨🇿 Czech Republic</option>
+      <option data-tier="4" data-currency="DOP" data-fallback="58.100" data-vat="Yes, 18%" data-note="VAT 18%">🇩🇴 Dominican Republic</option>
+      <option data-tier="4" data-currency="INR" data-fallback="94.485" data-vat="Yes, 18%" data-note="GST 18%">🇮🇳 India</option>
+      <option data-tier="4" data-currency="IDR" data-fallback="15400.0" data-vat="Yes, 11%" data-note="VAT 11%">🇮🇩 Indonesia</option>
+      <option data-tier="4" data-currency="MYR" data-fallback="4.3000" data-vat="Yes, 6%" data-note="SST 6%">🇲🇾 Malaysia</option>
+      <option data-tier="4" data-currency="MXN" data-fallback="19.500" data-vat="Yes, 16%" data-note="VAT 16%">🇲🇽 Mexico</option>
+      <option data-tier="4" data-currency="PHP" data-fallback="57.500" data-vat="Yes, 12%" data-note="VAT 12%">🇵🇭 Philippines</option>
+      <option data-tier="4" data-currency="PLN" data-fallback="3.9500" data-vat="Yes, 8%" data-note="Restaurant 8%">🇵🇱 Poland</option>
+      <option data-tier="4" data-currency="EUR" data-fallback="0.8602" data-vat="Yes, 10%" data-note="Restaurant 10%">🇸🇰 Slovakia</option>
+      <option data-tier="4" data-currency="THB" data-fallback="34.200" data-vat="Yes, 7%" data-note="VAT 7%">🇹🇭 Thailand</option>
+      <option data-tier="4" data-currency="VND" data-fallback="24300.0" data-vat="Yes, 5%" data-note="VAT 5%">🇻🇳 Vietnam</option>
     </select>
   </div>
 
   <div id="ans">
     <div class="tier-placeholder">Tier</div>
     <div class="rate placeholder-text">💱 Exchange rate: 1 USD = —</div>
+    <div class="refresh">📊 Data refreshed: —</div>
     <div class="vat placeholder-text">💳 Restaurant VAT: —</div>
     <div class="row"><div class="tt">🥐 Breakfast</div><div class="usd placeholder-text">$ — USD</div></div>
     <div class="row"><div class="tt">🍽️ Lunch</div><div class="usd placeholder-text">$ — USD</div></div>
@@ -196,8 +197,6 @@ select{width:100%;padding:10px 12px;font-size:15px;border:none;background:#33415
 </div>
 
 <script>
-const DATA_REFRESH_DATE = '4 September 2026';
-
 const DEFAULT_VAL = { 
   b1:30.00, l1:45.00, d1:75.00,
   b2:25.00, l2:40.00, d2:70.00,
@@ -207,13 +206,38 @@ const DEFAULT_VAL = {
 
 let val = { ...DEFAULT_VAL };
 let lastSelectedCountryValue = '';
+let rates = {};
+let refreshDate = '';
 
 const S={USD:'$',GBP:'£',EUR:'€',CNY:'¥',DKK:'kr',NOK:'kr',SEK:'kr',CAD:'C$',SGD:'S$',CHF:'CHF',ISK:'kr',ILS:'₪',KYD:'CI$',AOA:'Kz',GHS:'GH₵',KES:'KSh',NGN:'₦',SAR:'SAR',KRW:'₩',TRY:'₺',AED:'AED',DZD:'DA',BHD:'BD',ANG:'ƒ',EGP:'E£',JPY:'¥',KWD:'KD',LBP:'L£',MUR:'₨',NZD:'NZ$',OMR:'OMR',PKR:'Rs',QAR:'QR',ARS:'ARS$',BRL:'R$',CLP:'$',COP:'$',CRC:'₡',CZK:'Kč',DOP:'RD$',INR:'₹',IDR:'Rp',MYR:'RM',MXN:'Mex$',PHP:'₱',PLN:'zł',THB:'฿',VND:'₫'};
+
+function formatDate(date){
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+}
+
+async function fetchRates(){
+  try {
+    const res = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+    const data = await res.json();
+    rates = data.rates || {};
+    refreshDate = formatDate(new Date());
+  } catch(err){
+    rates = {};
+    refreshDate = formatDate(new Date());
+  }
+}
+
+function getRate(currency, fallback){
+  if(rates[currency]) return Number(rates[currency]);
+  return Number(fallback);
+}
 
 function showPlaceholder(){
   document.getElementById('ans').innerHTML=`
     <div class="tier-placeholder">Tier</div>
     <div class="rate placeholder-text">💱 Exchange rate: 1 USD = —</div>
+    <div class="refresh">📊 Data refreshed: ${refreshDate || '—'}</div>
     <div class="vat placeholder-text">💳 Restaurant VAT: —</div>
     <div class="row"><div class="tt">🥐 Breakfast</div><div class="usd placeholder-text">$ — USD</div></div>
     <div class="row"><div class="tt">🍽️ Lunch</div><div class="usd placeholder-text">$ — USD</div></div>
@@ -237,8 +261,21 @@ function updateSummary(){
 }
 
 function loadSettings(){
-  localStorage.removeItem('mealAllowanceVals');
-  val = { ...DEFAULT_VAL };
+  const saved=localStorage.getItem('mealAllowanceVals');
+  if(saved){
+    try{
+      const parsed=JSON.parse(saved);
+      if(parsed && parsed.b1 && parsed.b4){
+        val = parsed;
+      }else{
+        localStorage.removeItem('mealAllowanceVals');
+        val = { ...DEFAULT_VAL };
+      }
+    }catch(e){
+      localStorage.removeItem('mealAllowanceVals');
+      val = { ...DEFAULT_VAL };
+    }
+  }
   loadTierValues();
   updateSummary();
   showPlaceholder();
@@ -308,9 +345,10 @@ function go(){
 
   const t = Number(o.dataset.tier);
   const c = o.dataset.currency;
-  const r = Number(o.dataset.rate);
+  const fb = o.dataset.fallback;
   const vat = o.dataset.vat;
   const note = o.dataset.note;
+  const r = getRate(c, fb);
 
   let vb,vl,vd;
   if(t===1){ vb=val.b1; vl=val.l1; vd=val.d1; }
@@ -323,7 +361,7 @@ function go(){
   ans.innerHTML=`
     <div class="tier">Tier ${t}</div>
     <div class="rate">💱 Exchange rate: <strong>1 USD = ${sym}${r.toFixed(4)}</strong></div>
-    <div class="refresh">📊 Data refreshed: ${DATA_REFRESH_DATE}</div>
+    <div class="refresh">📊 Data refreshed: ${refreshDate}</div>
     <div class="vat">💳 Restaurant VAT: <strong>${vat}</strong><br><small>${note}</small></div>
     <div class="row"><div class="tt">🥐 Breakfast</div><div class="usd">$${vb.toFixed(2)} USD</div><div class="hk">${sym}${(vb*r).toFixed(2)}</div></div>
     <div class="row"><div class="tt">🍽️ Lunch</div><div class="usd">$${vl.toFixed(2)} USD</div><div class="hk">${sym}${(vl*r).toFixed(2)}</div></div>
@@ -331,7 +369,10 @@ function go(){
   `;
 }
 
-loadSettings();
+(async function init(){
+  loadSettings();
+  await fetchRates();
+})();
 </script>
 </body>
 </html>
